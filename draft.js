@@ -1,7 +1,7 @@
 // Draft functionality for Fantasy NFL Playoff Tracker
 
 // Feature flag to control draft functionality visibility
-const DRAFT_ENABLED = false; // Set to true to enable draft buttons
+const DRAFT_ENABLED = true; // Set to true to enable draft buttons
 
 // Draft UI state
 let currentTab = 'QB';
