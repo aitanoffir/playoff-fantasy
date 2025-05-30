@@ -1,5 +1,8 @@
 // Draft functionality for Fantasy NFL Playoff Tracker
 
+// Feature flag to control draft functionality visibility
+const DRAFT_ENABLED = false; // Set to true to enable draft buttons
+
 // Draft UI state
 let currentTab = 'QB';
 let draftModalOpen = false;
@@ -22,6 +25,11 @@ function renderDraftControls() {
     const existingControls = document.getElementById('draft-controls');
     if (existingControls) {
         existingControls.remove();
+    }
+    
+    // Early return if draft is disabled
+    if (!DRAFT_ENABLED) {
+        return;
     }
     
     const controls = document.createElement('div');
