@@ -1,4 +1,4 @@
-// Generated player stats with drafted players on 5/29/2025, 7:34:39 PM
+// Generated player stats with drafted players on 5/29/2025, 8:06:51 PM
 // Teams still active in playoffs
 const activeTeams = [
     "KC",

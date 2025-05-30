@@ -15,7 +15,7 @@ A comprehensive fantasy football application specifically designed for NFL playo
 
 ### 🎯 **Live Draft System**
 - **Complete Draft Interface**: Modal-based drafting with position tabs (QB, RB, WR, TE)
-- **Player Pool**: All relevant skill players across all playoff teams
+- **Player Pool**: All relevant offensive skill players across all playoff teams
 - **Sequential Drafting**: 6-owner draft order with automatic turn advancement
 - **Team Diversity Rule**: Maximum 1 player per NFL team per roster
 - **Draft Controls**: Start, Pause, Resume, Reset functionality
