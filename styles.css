@@ -35,6 +35,48 @@ header p {
     opacity: 0.9;
 }
 
+.header-controls {
+    margin-top: 1rem;
+}
+
+.refresh-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.refresh-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.refresh-btn:active {
+    transform: translateY(0);
+}
+
+.refresh-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.refresh-btn.loading {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 /* Main content */
 main {
     max-width: 1200px;
@@ -1023,4 +1065,46 @@ main {
 
 .team-violation-warning button:hover {
     background: rgba(255, 255, 255, 0.3);
+}
+
+/* Notification styles */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: white;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-weight: 600;
+    z-index: 1000;
+    transform: translateX(100%);
+    opacity: 0;
+    transition: all 0.3s ease;
+    max-width: 300px;
+    word-wrap: break-word;
+}
+
+.notification.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.notification-success {
+    border-color: #22c55e;
+    background: #f0fdf4;
+    color: #15803d;
+}
+
+.notification-error {
+    border-color: #ef4444;
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.notification-info {
+    border-color: #3b82f6;
+    background: #eff6ff;
+    color: #1d4ed8;
 }

@@ -24,7 +24,7 @@ export default {
     "Baker Mayfield": 15.7,
     "Ty Johnson": 15.0,
     "Dallas Goedert": 14.7,
-    "Saquon Barkley": 14.3,
+    "Saquon Barkley": 1,
     "Bo Nix": 14.1,
     "Troy Franklin": 13.4,
     "Zane Gonzalez": 13.0,

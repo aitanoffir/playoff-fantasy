@@ -5,18 +5,172 @@
 // - rosters.js: Contains all player roster data, used for frontend rendering and team info
 // - playerStats.js: Contains ONLY scoring data, used strictly for calculating points
 
-// Import player stats using ES6 modules
-import playerStats from './Data/playerStats.js';
-
 // Application state
+let playerStats = null;
 let currentSort = { column: 'total', direction: 'desc' };
 let expandedWeeks = new Set();
+let lastDataVersion = null;
+
+// Dynamic data loading with cache busting
+async function loadPlayerStats(forceRefresh = false) {
+    try {
+        // Use timestamp as cache buster
+        const timestamp = forceRefresh ? Date.now() : '';
+        const cacheBuster = timestamp ? `?v=${timestamp}` : '';
+        
+        // Dynamic import with cache busting
+        const statsModule = await import(`./Data/playerStats.js${cacheBuster}`);
+        playerStats = statsModule.default;
+        
+        // Store the current data version (file modification-like timestamp)
+        lastDataVersion = timestamp || Date.now();
+        
+        console.log('Player stats loaded successfully');
+        return playerStats;
+    } catch (error) {
+        console.error('Error loading player stats:', error);
+        throw error;
+    }
+}
+
+// Check if data needs to be refreshed (can be called periodically)
+async function checkForDataUpdates() {
+    try {
+        // Force a fresh import to check if data has changed
+        const timestamp = Date.now();
+        const statsModule = await import(`./Data/playerStats.js?v=${timestamp}`);
+        const newStats = statsModule.default;
+        
+        // Simple comparison - check if the data structure has changed
+        const currentDataString = JSON.stringify(playerStats);
+        const newDataString = JSON.stringify(newStats);
+        
+        if (currentDataString !== newDataString) {
+            console.log('New data detected, refreshing...');
+            playerStats = newStats;
+            lastDataVersion = timestamp;
+            
+            // Refresh the UI with new data
+            renderLeaderboard();
+            renderWeekBreakdown();
+            updateTimestamp();
+            
+            // Show notification to user
+            showNotification('📊 Stats updated with latest data!', 'success');
+            
+            return true; // Data was updated
+        }
+        
+        return false; // No changes
+    } catch (error) {
+        console.error('Error checking for data updates:', error);
+        return false;
+    }
+}
+
+// Manual refresh function for user-triggered updates
+async function refreshData() {
+    try {
+        await loadPlayerStats(true);
+        renderLeaderboard();
+        renderWeekBreakdown();
+        updateTimestamp();
+        console.log('Data refreshed successfully');
+    } catch (error) {
+        console.error('Error refreshing data:', error);
+    }
+}
+
+// Add refresh button functionality
+function addRefreshButton() {
+    const refreshBtn = document.getElementById('refresh-data');
+    if (refreshBtn) {
+        refreshBtn.addEventListener('click', async () => {
+            // Disable button and show loading state
+            refreshBtn.disabled = true;
+            refreshBtn.classList.add('loading');
+            refreshBtn.textContent = '🔄 Refreshing...';
+            
+            try {
+                await refreshData();
+                
+                // Show success feedback
+                refreshBtn.textContent = '✅ Updated!';
+                showNotification('📊 Data refreshed successfully!', 'success');
+                setTimeout(() => {
+                    refreshBtn.textContent = '🔄 Refresh Data';
+                }, 2000);
+                
+            } catch (error) {
+                // Show error feedback
+                refreshBtn.textContent = '❌ Error';
+                showNotification('❌ Failed to refresh data. Please try again.', 'error');
+                setTimeout(() => {
+                    refreshBtn.textContent = '🔄 Refresh Data';
+                }, 3000);
+            } finally {
+                // Re-enable button and remove loading state
+                refreshBtn.disabled = false;
+                refreshBtn.classList.remove('loading');
+            }
+        });
+    }
+}
+
+// Show notification to user
+function showNotification(message, type = 'info') {
+    // Remove existing notifications
+    const existingNotification = document.querySelector('.notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+    
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.textContent = message;
+    
+    // Add to page
+    document.body.appendChild(notification);
+    
+    // Show with animation
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 100);
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.remove();
+            }
+        }, 300);
+    }, 5000);
+}
 
 // Initialize the application
-document.addEventListener('DOMContentLoaded', () => {
-    renderLeaderboard();
-    renderWeekBreakdown();
-    updateTimestamp();
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        // Load player stats first
+        await loadPlayerStats();
+        
+        // Then render the UI
+        renderLeaderboard();
+        renderWeekBreakdown();
+        updateTimestamp();
+        
+        // Set up periodic data checking (every 5 minutes)
+        setInterval(checkForDataUpdates, 5 * 60 * 1000);
+        
+        // Add refresh button functionality
+        addRefreshButton();
+        
+    } catch (error) {
+        console.error('Error initializing application:', error);
+        // Show error message to user
+        document.body.innerHTML = '<div style="text-align: center; padding: 20px; color: red;">Error loading data. Please refresh the page.</div>';
+    }
 });
 
 // Calculate total points for an owner (uses rosters for player info, playerStats only for scoring)
