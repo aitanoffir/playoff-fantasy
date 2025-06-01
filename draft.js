@@ -54,14 +54,14 @@ function renderDraftControls() {
             <button class="draft-btn reset-draft" onclick="confirmResetDraft()" disabled>
                 Reset Draft
             </button>
-        `;    } else if (isDraftComplete()) {
-        controls.innerHTML = `
+        `;    } else if (isDraftComplete()) {        controls.innerHTML = `
             <button class="draft-btn completed" disabled>
                 Draft Complete!
             </button>
             <button class="draft-btn export-rosters" onclick="exportDraftedRosters()">
                 Export Rosters
-            </button>            <button class="draft-btn export-stats" onclick="exportPlayerStats()">
+            </button>
+            <button class="draft-btn export-stats" onclick="exportPlayerStats()">
                 Export Stats
             </button>
             <button class="draft-btn reset-draft" onclick="confirmResetDraft()">
@@ -419,9 +419,9 @@ function showDraftComplete() {
                         </div>
                     `;
                 }).join('')}
-            </div>
-              <div class="complete-actions">
-                <button class="draft-btn" onclick="hideDraftInterface()">View Leaderboard</button>                <button class="draft-btn export-rosters" onclick="exportDraftedRosters()">Export Rosters</button>
+            </div>            <div class="complete-actions">
+                <button class="draft-btn" onclick="hideDraftInterface()">View Leaderboard</button>
+                <button class="draft-btn export-rosters" onclick="exportDraftedRosters()">Export Rosters</button>
                 <button class="draft-btn export-stats" onclick="exportPlayerStats()">Export Stats</button>
                 <button class="draft-btn reset-draft" onclick="confirmResetDraft()" disabled>Start New Draft</button>
             </div>
@@ -451,34 +451,30 @@ function exportPlayerStats() {
         alert('No rosters to export player stats for.');
         return;
     }
-    
-    // Get all players from all rosters
+      // Get all players from all rosters
     const rosteredPlayers = {};
-      Object.values(rosters).forEach(roster => {
+    Object.values(rosters).forEach(roster => {
         roster.forEach(player => {
             const playerName = player.name;
             
-            // Initialize all players with 0 weekly points
+            // Preserve existing scoring data if it exists, otherwise initialize with 0s
+            const existingStats = playerStats[playerName];
             rosteredPlayers[playerName] = {
-                team: player.team,
-                weeklyPoints: {
-                    "Wildcard": 0,
-                    "Divisional": 0,
-                    "Conference": 0,
-                    "Super Bowl": 0
-                }
+                team: player.team, // Always use team from roster
+                weeklyPoints: existingStats && existingStats.weeklyPoints ? 
+                    existingStats.weeklyPoints : {
+                        "Wildcard": 0,
+                        "Divisional": 0,
+                        "Conference": 0,
+                        "Super Bowl": 0
+                    }
             };
         });
     });
-    
-    const statsContent = `// Generated player stats with drafted players on ${new Date().toLocaleString()}
-// Teams still active in playoffs
-const activeTeams = ${JSON.stringify(activeTeams, null, 4)};
-
+      const statsContent = `// Generated player stats with drafted players on ${new Date().toLocaleString()}
 // Player stats by week - only includes rostered players
 const playerStats = ${JSON.stringify(rosteredPlayers, null, 4)};`;
-    
-    downloadFile('playerStats.js', statsContent);
+      downloadFile('playerStats.js', statsContent);
 }
 
 function downloadFile(filename, content) {
@@ -501,8 +497,6 @@ window.toggleDraftInterface = toggleDraftInterface;
 window.hideDraftInterface = hideDraftInterface;
 window.switchTab = switchTab;
 window.selectPlayer = selectPlayer;
-window.exportDraftedRosters = exportDraftedRosters;
-window.exportPlayerStats = exportPlayerStats;
 window.exportDraftedRosters = exportDraftedRosters;
 window.exportPlayerStats = exportPlayerStats;
 

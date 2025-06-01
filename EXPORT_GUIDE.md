@@ -44,6 +44,14 @@ After each playoff round, manually edit the downloaded `playerStats.js` file to 
 ✅ **Sharing** - Can share roster files with others  
 ✅ **Clean Player Stats** - Only includes rostered players, no unused data  
 ✅ **Preserves Scoring** - Keeps existing weekly points for all players  
+✅ **Modular Design** - Separate files for teams, rosters, and scoring data
+
+## Managing Active Teams
+
+The `Data/activeTeams.js` file contains the list of teams still in playoffs:
+- **Edit manually** as teams get eliminated throughout playoff rounds
+- **Not exportable** - intended to be manually maintained  
+- Used to determine which players are still active vs. eliminated
 
 ## File Locations After Export
 

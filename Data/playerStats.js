@@ -1,24 +1,4 @@
 // Generated player stats with drafted players on 5/29/2025, 8:06:51 PM
-// Teams still active in playoffs
-const activeTeams = [
-    "KC",
-    "PHI",
-    "PIT",
-    "BAL",
-    "TB",
-    "LAR",
-    "WAS",
-    "DET",
-    "GB",
-    "DEN",
-    "HOU",
-    "LAC",
-    "SF",
-    "BUF",
-    "MIN",
-    "LV"
-];
-
 // Player stats by week - only includes rostered players
 const playerStats = {
     "Patrick Mahomes": {

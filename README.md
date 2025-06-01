@@ -71,6 +71,7 @@ playoff-fantasy/
 ├── draft.js                # Complete draft system functionality
 ├── styles.css              # All styling and animations
 ├── Data/
+│   ├── activeTeams.js      # Currently active playoff teams
 │   ├── draftData.js        # Player pool and draft configuration
 │   ├── rosters.js          # Team rosters (can be drafted or pre-set)
 │   └── playerStats.js      # Player statistics and weekly scores
@@ -137,9 +138,10 @@ playoff-fantasy/
 - Sortable columns and expandable sections
 
 #### Data Structure (`Data/`)
-- **`draftData.js`**: Player pool with positions and teams
-- **`rosters.js`**: Owner roster assignments
-- **`playerStats.js`**: Weekly scoring data with team affiliations
+- **`activeTeams.js`**: Currently active playoff teams - **USED FOR** elimination status
+- **`draftData.js`**: Player pool with positions and teams for draft interface
+- **`rosters.js`**: Owner roster assignments - **PRIMARY SOURCE** for all player rendering
+- **`playerStats.js`**: Weekly scoring data - **USED ONLY** for calculating points
 
 #### Styling (`styles.css`)
 - CSS custom properties for theming

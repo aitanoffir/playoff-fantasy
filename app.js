@@ -1,4 +1,9 @@
 // Fantasy NFL Playoff Tracker - Main JavaScript
+// 
+// DATA SEPARATION PRINCIPLE:
+// - activeTeams.js: Contains active playoff teams, used for elimination status
+// - rosters.js: Contains all player roster data, used for frontend rendering and team info
+// - playerStats.js: Contains ONLY scoring data, used strictly for calculating points
 
 // Application state
 let currentSort = { column: 'total', direction: 'desc' };
@@ -11,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateTimestamp();
 });
 
-// Calculate total points for an owner
+// Calculate total points for an owner (uses rosters for player info, playerStats only for scoring)
 function calculateOwnerTotal(owner) {
     const ownerRoster = rosters[owner] || [];
     return ownerRoster.reduce((total, player) => {
@@ -25,19 +30,17 @@ function calculateOwnerTotal(owner) {
     }, 0);
 }
 
-// Calculate active players count for an owner
+// Calculate active players count for an owner (uses roster data for team info)
 function calculateActivePlayersCount(owner) {
     const ownerRoster = rosters[owner] || [];
     return ownerRoster.filter(player => {
-        const stats = playerStats[player.name];
-        return stats && activeTeams.includes(stats.team);
+        return activeTeams.includes(player.team);
     }).length;
 }
 
-// Check if a player is eliminated
-function isPlayerEliminated(playerName) {
-    const stats = playerStats[playerName];
-    return stats && !activeTeams.includes(stats.team);
+// Check if a player is eliminated (use roster data for team info)
+function isPlayerEliminated(player) {
+    return !activeTeams.includes(player.team);
 }
 
 // Render the main leaderboard
@@ -114,8 +117,7 @@ function toggleOwnerDetails(owner) {
     
     const ownerRoster = rosters[owner] || [];
     const ownerTotal = calculateOwnerTotal(owner);
-    
-    let rosterHTML = ownerRoster.map(player => {
+      let rosterHTML = ownerRoster.map(player => {
         const stats = playerStats[player.name];
         const isEliminated = !activeTeams.includes(player.team);
         const playerTotal = stats ? Object.values(stats.weeklyPoints).reduce((sum, points) => sum + points, 0) : 0;
@@ -226,17 +228,21 @@ function toggleWeek(week) {
 
 // Populate players for a specific week
 function populateWeekPlayers(week, container) {
-    // Get all players who played in this week
+    // Get all rostered players who played in this week
     const weekPlayers = [];
     
-    Object.entries(playerStats).forEach(([playerName, stats]) => {
-        if (stats.weeklyPoints && stats.weeklyPoints[week] !== undefined && stats.weeklyPoints[week] > 0) {
-            weekPlayers.push({
-                name: playerName,
-                team: stats.team,
-                points: stats.weeklyPoints[week]
-            });
-        }
+    // Iterate through rosters to get all rostered players
+    Object.values(rosters).forEach(roster => {
+        roster.forEach(player => {
+            const stats = playerStats[player.name];
+            if (stats && stats.weeklyPoints && stats.weeklyPoints[week] !== undefined && stats.weeklyPoints[week] > 0) {
+                weekPlayers.push({
+                    name: player.name,
+                    team: player.team, // Use team from roster, not playerStats
+                    points: stats.weeklyPoints[week]
+                });
+            }
+        });
     });
 
     // Sort by points (descending)
