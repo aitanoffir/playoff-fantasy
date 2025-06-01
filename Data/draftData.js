@@ -293,26 +293,12 @@ function draftPlayer(playerName, position) {
         player: playerName,
         position: position,
         team: player.team
-    });
-      // Add to owner's roster
+    });    // Add to owner's roster
     draftState.completedRosters[draftState.currentDrafter].push({
         name: playerName,
         team: player.team,
         position: position
     });
-    
-    // Ensure player exists in playerStats for scoring
-    if (!playerStats[playerName]) {
-        playerStats[playerName] = {
-            team: player.team,
-            weeklyPoints: {
-                "Wildcard": 0,
-                "Divisional": 0,
-                "Conference": 0,
-                "Super Bowl": 0
-            }
-        };
-    }
     
     // Update global rosters
     rosters[draftState.currentDrafter] = draftState.completedRosters[draftState.currentDrafter];

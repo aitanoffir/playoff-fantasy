@@ -5,6 +5,9 @@
 // - rosters.js: Contains all player roster data, used for frontend rendering and team info
 // - playerStats.js: Contains ONLY scoring data, used strictly for calculating points
 
+// Import player stats using ES6 modules
+import playerStats from './Data/playerStats.js';
+
 // Application state
 let currentSort = { column: 'total', direction: 'desc' };
 let expandedWeeks = new Set();
@@ -20,13 +23,17 @@ document.addEventListener('DOMContentLoaded', () => {
 function calculateOwnerTotal(owner) {
     const ownerRoster = rosters[owner] || [];
     return ownerRoster.reduce((total, player) => {
-        const stats = playerStats[player.name];
-        if (stats && stats.weeklyPoints) {
-            const playerTotal = Object.values(stats.weeklyPoints)
-                .reduce((sum, points) => sum + points, 0);
-            return total + playerTotal;
-        }
-        return total;
+        const playerName = player.name;
+        let playerTotal = 0;
+        
+        // Sum points from all weeks for this player
+        // If player doesn't have a score for a week, they get 0 points
+        Object.keys(playerStats).forEach(week => {
+            const weeklyPoints = playerStats[week][playerName] || 0;
+            playerTotal += weeklyPoints;
+        });
+        
+        return total + playerTotal;
     }, 0);
 }
 
@@ -114,13 +121,18 @@ function toggleOwnerDetails(owner) {
     const modal = document.createElement('div');
     modal.id = 'owner-modal';
     modal.className = 'modal';
-    
-    const ownerRoster = rosters[owner] || [];
+      const ownerRoster = rosters[owner] || [];
     const ownerTotal = calculateOwnerTotal(owner);
-      let rosterHTML = ownerRoster.map(player => {
-        const stats = playerStats[player.name];
+    let rosterHTML = ownerRoster.map(player => {
+        const playerName = player.name;
         const isEliminated = !activeTeams.includes(player.team);
-        const playerTotal = stats ? Object.values(stats.weeklyPoints).reduce((sum, points) => sum + points, 0) : 0;
+          // Calculate player total using new format
+        // If player doesn't have a score for a week, they get 0 points
+        let playerTotal = 0;
+        Object.keys(playerStats).forEach(week => {
+            const weeklyPoints = playerStats[week][playerName] || 0;
+            playerTotal += weeklyPoints;
+        });
         
         return `
             <div class="player-row ${isEliminated ? 'eliminated' : ''}">
@@ -155,16 +167,11 @@ function renderWeekBreakdown() {
     const weekBreakdown = document.getElementById('week-breakdown');
     if (!weekBreakdown) return;
 
-    // Get all unique weeks from player stats
-    const weeks = new Set();
-    Object.values(playerStats).forEach(stats => {
-        if (stats.weeklyPoints) {
-            Object.keys(stats.weeklyPoints).forEach(week => weeks.add(week));
-        }
-    });
-
-    const sortedWeeks = Array.from(weeks).sort((a, b) => {
-        const order = { "Wildcard": 1, "Divisional": 2, "Conference": 3, "Super Bowl": 4 };
+    // Get all weeks from the new playerStats format
+    const weeks = Object.keys(playerStats);
+    
+    const sortedWeeks = weeks.sort((a, b) => {
+        const order = { "Wildcard": 1, "Divisional": 2, "Conference": 3, "SuperBowl": 4 };
         return order[a] - order[b];
     });
 
@@ -234,12 +241,13 @@ function populateWeekPlayers(week, container) {
     // Iterate through rosters to get all rostered players
     Object.values(rosters).forEach(roster => {
         roster.forEach(player => {
-            const stats = playerStats[player.name];
-            if (stats && stats.weeklyPoints && stats.weeklyPoints[week] !== undefined && stats.weeklyPoints[week] > 0) {
+            const playerName = player.name;
+            // Check if player has points for this week in the new format
+            if (playerStats[week] && playerStats[week][playerName] !== undefined && playerStats[week][playerName] > 0) {
                 weekPlayers.push({
-                    name: player.name,
+                    name: playerName,
                     team: player.team, // Use team from roster, not playerStats
-                    points: stats.weeklyPoints[week]
+                    points: playerStats[week][playerName]
                 });
             }
         });

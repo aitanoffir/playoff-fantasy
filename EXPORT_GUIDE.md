@@ -9,46 +9,69 @@ After completing a draft, you can export your results to update your source file
 - Downloads `rosters.js` file with your drafted teams
 - **Replace your original `Data/rosters.js` with this file**
 
-### 2. Export Player Stats
-- Click **"Export Stats"** button
-- Downloads `playerStats.js` file with **only rostered players** included
-- **Preserves existing weekly scores** for players who already have data
-- **Adds default 0 scores** for newly drafted players
-- **Replace your original `Data/playerStats.js` with this file**
+### 2. Player Stats Management
+**Note**: Player stats are **NOT exportable** from the draft system. The `playerStats.js` file is generated via web scraping and should be updated through that process.
+
+- Player stats are organized by week: `stats.Wildcard["Player Name"]`
+- The draft system only handles roster management
+- Stats data is kept separate to maintain clean data separation
 
 ### 3. Update Your Files
-1. **Backup originals first** (rename them to `rosters.js.backup`, etc.)
-2. **Move downloaded files** to your `Data/` folder
+1. **Backup originals first** (rename them to `rosters.js.backup`)
+2. **Move downloaded rosters file** to your `Data/` folder
 3. **Refresh your website** - it will now use the new rosters permanently
 
-### 4. Update Weekly Scores
-After each playoff round, manually edit the downloaded `playerStats.js` file to add weekly scores:
+### 4. Weekly Score Updates
+Player stats are maintained separately from the draft system and should be updated via web scraping or manual editing of the `playerStats.js` file:
 
 ```javascript
-"Patrick Mahomes": {
-    team: "KC",
-    weeklyPoints: {
-        "Wildcard": 0,     // Update these values
-        "Divisional": 25.4, // with actual scores
-        "Conference": 30.2,
-        "Super Bowl": 0
-    }
-}
+export default {
+  "Wildcard": {
+    "Patrick Mahomes": 25.4,   // Update these values
+    "Josh Allen": 18.7,        // or manual entry
+    "Lamar Jackson": 30.2,
+    // ... other players
+  },
+  "Divisional": {
+    "Patrick Mahomes": 22.1,   // Update after divisional round
+    "Josh Allen": 15.3,
+    // ... other players
+  },
+  "Conference": {
+    "Patrick Mahomes": 0,      // Update after conference championship
+    "Josh Allen": 0,
+    // ... other players
+  },
+  "SuperBowl": {
+    "Patrick Mahomes": 0,      // Update after Super Bowl
+    "Josh Allen": 0,
+    // ... other players
+  }
+};
 ```
 
-## Benefits of Exporting
+## Benefits of Exporting Rosters
 
 ✅ **Permanent Storage** - Rosters saved to files, not just browser  
 ✅ **Backup Safety** - Can restore if localStorage is cleared  
 ✅ **Version Control** - Can commit changes to Git  
 ✅ **Sharing** - Can share roster files with others  
-✅ **Clean Player Stats** - Only includes rostered players, no unused data  
-✅ **Preserves Scoring** - Keeps existing weekly points for all players  
 ✅ **Modular Design** - Separate files for teams, rosters, and scoring data
 
-## Managing Active Teams
+## Data Separation Architecture
 
-The `Data/activeTeams.js` file contains the list of teams still in playoffs:
+### Rosters (rosters.js) - Exportable
+- Contains player names, positions, and team assignments
+- Managed by the draft system
+- Exported after draft completion
+
+### Player Stats (playerStats.js) - External
+- Contains weekly scoring data organized by week
+- Generated via web scraping or manual entry
+- **Not** managed by the draft system
+
+### Active Teams (activeTeams.js) - Manual
+- Contains list of teams still in playoffs
 - **Edit manually** as teams get eliminated throughout playoff rounds
 - **Not exportable** - intended to be manually maintained  
 - Used to determine which players are still active vs. eliminated

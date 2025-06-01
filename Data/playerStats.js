@@ -1,328 +1,247 @@
-// Generated player stats with drafted players on 5/29/2025, 8:06:51 PM
-// Player stats by week - only includes rostered players
-const playerStats = {
-    "Patrick Mahomes": {
-        "team": "KC",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "Saquon Barkley": {
-        "team": "PHI",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "Najee Harris": {
-        "team": "PIT",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "Cooper Kupp": {
-        "team": "LAR",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "Amon-Ra St. Brown": {
-        "team": "DET",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "Mark Andrews": {
-        "team": "BAL",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "Lamar Jackson": {
-        "team": "BAL",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "Josh Jacobs": {
-        "team": "GB",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "Rachaad White": {
-        "team": "TB",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "A.J. Brown": {
-        "team": "PHI",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "Terry McLaurin": {
-        "team": "WAS",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "Travis Kelce": {
-        "team": "KC",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "Jalen Hurts": {
-        "team": "PHI",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "Derrick Henry": {
-        "team": "BAL",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "Javonte Williams": {
-        "team": "DEN",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "Stefon Diggs": {
-        "team": "HOU",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "Ladd McConkey": {
-        "team": "LAC",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "Sam LaPorta": {
-        "team": "DET",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "Josh Allen": {
-        "team": "BUF",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "David Montgomery": {
-        "team": "DET",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "Jaylen Warren": {
-        "team": "PIT",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "Mike Evans": {
-        "team": "TB",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "Jordan Addison": {
-        "team": "MIN",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "George Kittle": {
-        "team": "SF",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "Justin Herbert": {
-        "team": "LAC",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "James Cook": {
-        "team": "BUF",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "Brian Robinson Jr.": {
-        "team": "WAS",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "Justin Jefferson": {
-        "team": "MIN",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "Puka Nacua": {
-        "team": "LAR",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "Brock Bowers": {
-        "team": "LV",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "Jared Goff": {
-        "team": "DET",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "Aaron Jones": {
-        "team": "MIN",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "J.K. Dobbins": {
-        "team": "LAC",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "Courtland Sutton": {
-        "team": "DEN",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "Romeo Doubs": {
-        "team": "GB",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    },
-    "Dallas Goedert": {
-        "team": "PHI",
-        "weeklyPoints": {
-            "Wildcard": 0,
-            "Divisional": 0,
-            "Conference": 0,
-            "Super Bowl": 0
-        }
-    }
+export default {
+  "Wildcard": {
+    "Ladd McConkey": 34.7,
+    "Derrick Henry": 30.6,
+    "Josh Allen": 25.5,
+    "Nico Collins": 25.2,
+    "Lamar Jackson": 23.1,
+    "Jayden Daniels": 22.3,
+    "Mike Evans": 22.2,
+    "Terry McLaurin": 21.9,
+    "Josh Jacobs": 21.1,
+    "Dyami Brown": 19.9,
+    "George Pickens": 19.7,
+    "Russell Wilson": 19.4,
+    "Kyren Williams": 18.2,
+    "James Cook": 18.0,
+    "C.J. Stroud": 17.5,
+    "T.J. Hockenson": 17.4,
+    "Joe Mixon": 16.9,
+    "Jalen Hurts": 16.8,
+    "Bucky Irving": 16.3,
+    "Matthew Stafford": 16.3,
+    "Curtis Samuel": 15.8,
+    "Baker Mayfield": 15.7,
+    "Ty Johnson": 15.0,
+    "Dallas Goedert": 14.7,
+    "Saquon Barkley": 14.3,
+    "Bo Nix": 14.1,
+    "Troy Franklin": 13.4,
+    "Zane Gonzalez": 13.0,
+    "Justice Hill": 12.5,
+    "Courtland Sutton": 12.5,
+    "Khalil Shakir": 12.1,
+    "Ka'imi Fairbairn": 12.0,
+    "Van Jefferson": 11.7,
+    "Sam Darnold": 11.7,
+    "Tyler Bass": 11.0,
+    "Tyler Higbee": 10.8,
+    "Justin Jefferson": 10.8,
+    "Rashod Bateman": 10.4,
+    "Puka Nacua": 10.1,
+    "Jake Elliott": 10.0,
+    "Chase McLaughlin": 10.0,
+    "DeVonta Smith": 9.5,
+    "Aaron Jones": 9.0,
+    "Joshua Karty": 9.0,
+    "Najee Harris": 8.8,
+    "Tucker Kraft": 8.6,
+    "Jayden Reed": 8.6,
+    "Davis Allen": 8.3,
+    "Austin Ekeler": 8.3,
+    "Isaiah Likely": 8.3,
+    "Jahan Dotson": 8.1,
+    "Brian Robinson Jr.": 7.8,
+    "Dalton Kincaid": 7.7,
+    "Cade Stover": 6.8,
+    "Jaylen Warren": 6.5,
+    "Javonte Williams": 6.3,
+    "Jalen Nailor": 6.3,
+    "Jalen McMillan": 6.1,
+    "Cameron Dicker": 6.0,
+    "Dontayvion Wicks": 5.9,
+    "Jordan Addison": 5.9,
+    "Dawson Knox": 5.8,
+    "Justin Herbert": 5.7,
+    "Mark Andrews": 5.2,
+    "Cade Otton": 5.2,
+    "Olamide Zaccheaus": 4.9,
+    "John Metchie III": 4.8,
+    "Johnny Mundt": 4.8,
+    "Mike Williams": 4.7,
+    "Pat Freiermuth": 4.5,
+    "Xavier Hutchinson": 4.4,
+    "Dalton Schultz": 4.3,
+    "Zach Ertz": 4.3,
+    "Anthony Miller": 4.2,
+    "Robert Woods": 4.2,
+    "Brandon McManus": 4.0,
+    "Justin Tucker": 4.0,
+    "Emanuel Wilson": 3.9,
+    "Cam Akers": 3.9,
+    "Cooper Kupp": 3.9,
+    "Will Dissly": 3.6,
+    "Keon Coleman": 3.5,
+    "Calvin Austin III": 3.5,
+    "Nelson Agholor": 3.5,
+    "Rachaad White": 3.5,
+    "Jordan Love": 3.5,
+    "Demarcus Robinson": 3.3,
+    "Romeo Doubs": 3.3,
+    "Marvin Mims Jr.": 3.3,
+    "Colby Parkinson": 3.3,
+    "Tylan Wallace": 3.1,
+    "Will Reichard": 3.0,
+    "Mack Hollins": 2.9,
+    "Chris Brooks": 2.9,
+    "Amari Cooper": 2.8,
+    "Trent Sherfield Sr.": 2.8,
+    "Bo Melton": 2.6,
+    "J.K. Dobbins": 2.6,
+    "Tucker Fisk": 2.5,
+    "Hunter Long": 2.3
+  },
+  "Divisional": {
+    "Saquon Barkley": 39.2,
+    "Jahmyr Gibbs": 35.5,
+    "Jayden Daniels": 25.1,
+    "Travis Kelce": 24.7,
+    "Amon-Ra St. Brown": 21.7,
+    "Brian Robinson Jr.": 19.7,
+    "Matthew Stafford": 19.5,
+    "Josh Allen": 19.1,
+    "Terry McLaurin": 18.7,
+    "Tyler Higbee": 18.4,
+    "Jalen Hurts": 18.1,
+    "Lamar Jackson": 18.1,
+    "Joe Mixon": 18.0,
+    "Isaiah Likely": 17.3,
+    "Sam LaPorta": 17.1,
+    "Rashod Bateman": 16.6,
+    "Dyami Brown": 15.8,
+    "Puka Nacua": 15.7,
+    "Derrick Henry": 14.4,
+    "C.J. Stroud": 14.0,
+    "Zach Ertz": 13.8,
+    "Nico Collins": 13.1,
+    "Jameson Williams": 13.0,
+    "Austin Ekeler": 12.8,
+    "Khalil Shakir": 12.7,
+    "Patrick Mahomes": 12.5,
+    "Kareem Hunt": 11.6,
+    "James Cook": 11.2,
+    "Cooper Kupp": 11.1,
+    "Tyler Bass": 11.0,
+    "Harrison Butker": 11.0,
+    "Demarcus Robinson": 10.4,
+    "Dalton Schultz": 10.3,
+    "Jake Elliott": 10.0,
+    "Dallas Goedert": 9.6,
+    "Kyren Williams": 9.5,
+    "Mark Andrews": 9.4,
+    "Jared Goff": 9.2,
+    "Xavier Hutchinson": 9.2,
+    "Zane Gonzalez": 9.0,
+    "Ray Davis": 8.9,
+    "Colby Parkinson": 8.9,
+    "Xavier Worthy": 8.7,
+    "Joshua Karty": 8.0,
+    "Justice Hill": 7.7,
+    "Justin Tucker": 7.0,
+    "Jake Bates": 7.0,
+    "Jeremy McNichols": 6.8,
+    "Kalif Raymond": 6.7,
+    "DeVonta Smith": 6.1,
+    "Ka'imi Fairbairn": 6.0,
+    "John Metchie III": 5.5,
+    "Ty Johnson": 4.9,
+    "Jamison Crowder": 4.5,
+    "Noah Gray": 4.3,
+    "Tylan Wallace": 3.7,
+    "David Montgomery": 3.6,
+    "A.J. Brown": 3.4,
+    "Tim Patrick": 3.2,
+    "Kenneth Gainwell": 3.0,
+    "John Bates": 3.0,
+    "Curtis Samuel": 2.9,
+    "Tutu Atwell": 2.8,
+    "Anthony Miller": 2.6,
+    "Jordan Whittington": 2.2,
+    "Mack Hollins": 2.2,
+    "Dalton Kincaid": 2.1,
+    "Dare Ogunbowale": 1.9,
+    "Isiah Pacheco": 1.8,
+    "Keon Coleman": 1.5,
+    "Steven Sims": 1.4,
+    "Irv Smith": 1.2,
+    "Dameon Pierce": 1.0,
+    "Dawson Knox": 1.0,
+    "Teddy Bridgewater": 0.1
+  },
+  "Conference": {
+    "Jalen Hurts": 33.4,
+    "Saquon Barkley": 31.2,
+    "Patrick Mahomes": 30.1,
+    "James Cook": 28.4,
+    "Jayden Daniels": 25.0,
+    "Xavier Worthy": 22.1,
+    "A.J. Brown": 21.6,
+    "Zach Ertz": 21.4,
+    "Josh Allen": 21.4,
+    "Dallas Goedert": 16.8,
+    "Mack Hollins": 16.3,
+    "Terry McLaurin": 14.1,
+    "Kareem Hunt": 14.0,
+    "Will Shipley": 13.7,
+    "Khalil Shakir": 10.6,
+    "Zane Gonzalez": 9.0,
+    "Olamide Zaccheaus": 8.6,
+    "DeVonta Smith": 8.5,
+    "JuJu Smith-Schuster": 8.0,
+    "Curtis Samuel": 7.4,
+    "Amari Cooper": 7.3,
+    "Tyler Bass": 7.0,
+    "Jake Elliott": 7.0,
+    "Marquise Brown": 6.5,
+    "Austin Ekeler": 6.2,
+    "Harrison Butker": 6.0,
+    "Dyami Brown": 5.2,
+    "Kenneth Gainwell": 4.4,
+    "Isiah Pacheco": 4.4,
+    "Travis Kelce": 3.9,
+    "Brian Robinson Jr.": 3.6,
+    "Ben Sinnott": 3.3,
+    "Dalton Kincaid": 3.3,
+    "John Bates": 3.1,
+    "Ty Johnson": 2.9,
+    "Samaje Perine": 2.7,
+    "Keon Coleman": 2.2,
+    "DeAndre Hopkins": 2.1,
+    "Justin Watson": 2.0,
+    "Dawson Knox": 1.7,
+    "Jamison Crowder": 1.4,
+    "Tress Way": 0.9,
+    "Ray Davis": 0.4
+  },
+  "SuperBowl": {
+    "Xavier Worthy": 35.7,
+    "Jalen Hurts": 28.0,
+    "Patrick Mahomes": 22.8,
+    "Jake Elliott": 18.0,
+    "DeVonta Smith": 16.9,
+    "Saquon Barkley": 15.7,
+    "A.J. Brown": 13.3,
+    "DeAndre Hopkins": 11.8,
+    "Travis Kelce": 7.9,
+    "Jahan Dotson": 6.2,
+    "Dallas Goedert": 4.7,
+    "JuJu Smith-Schuster": 3.6,
+    "Marquise Brown": 3.5,
+    "Kareem Hunt": 2.4,
+    "Isiah Pacheco": 2.2,
+    "Justin Watson": 2.0,
+    "Noah Gray": 1.2,
+    "Kenneth Gainwell": 1.0,
+    "Samaje Perine": 0.8
+  }
 };

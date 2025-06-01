@@ -61,9 +61,6 @@ function renderDraftControls() {
             <button class="draft-btn export-rosters" onclick="exportDraftedRosters()">
                 Export Rosters
             </button>
-            <button class="draft-btn export-stats" onclick="exportPlayerStats()">
-                Export Stats
-            </button>
             <button class="draft-btn reset-draft" onclick="confirmResetDraft()">
                 Reset Draft
             </button>
@@ -420,9 +417,7 @@ function showDraftComplete() {
                     `;
                 }).join('')}
             </div>            <div class="complete-actions">
-                <button class="draft-btn" onclick="hideDraftInterface()">View Leaderboard</button>
-                <button class="draft-btn export-rosters" onclick="exportDraftedRosters()">Export Rosters</button>
-                <button class="draft-btn export-stats" onclick="exportPlayerStats()">Export Stats</button>
+                <button class="draft-btn" onclick="hideDraftInterface()">View Leaderboard</button>                <button class="draft-btn export-rosters" onclick="exportDraftedRosters()">Export Rosters</button>
                 <button class="draft-btn reset-draft" onclick="confirmResetDraft()" disabled>Start New Draft</button>
             </div>
         </div>
@@ -446,36 +441,7 @@ const rosters = ${JSON.stringify(rosters, null, 4)};`;
     downloadFile('rosters.js', rostersContent);
 }
 
-function exportPlayerStats() {
-    if (!rosters || Object.keys(rosters).length === 0) {
-        alert('No rosters to export player stats for.');
-        return;
-    }
-      // Get all players from all rosters
-    const rosteredPlayers = {};
-    Object.values(rosters).forEach(roster => {
-        roster.forEach(player => {
-            const playerName = player.name;
-            
-            // Preserve existing scoring data if it exists, otherwise initialize with 0s
-            const existingStats = playerStats[playerName];
-            rosteredPlayers[playerName] = {
-                team: player.team, // Always use team from roster
-                weeklyPoints: existingStats && existingStats.weeklyPoints ? 
-                    existingStats.weeklyPoints : {
-                        "Wildcard": 0,
-                        "Divisional": 0,
-                        "Conference": 0,
-                        "Super Bowl": 0
-                    }
-            };
-        });
-    });
-      const statsContent = `// Generated player stats with drafted players on ${new Date().toLocaleString()}
-// Player stats by week - only includes rostered players
-const playerStats = ${JSON.stringify(rosteredPlayers, null, 4)};`;
-      downloadFile('playerStats.js', statsContent);
-}
+
 
 function downloadFile(filename, content) {
     const blob = new Blob([content], { type: 'text/javascript' });
@@ -498,7 +464,6 @@ window.hideDraftInterface = hideDraftInterface;
 window.switchTab = switchTab;
 window.selectPlayer = selectPlayer;
 window.exportDraftedRosters = exportDraftedRosters;
-window.exportPlayerStats = exportPlayerStats;
 
 // Initialize when DOM is loaded
 if (document.readyState === 'loading') {
