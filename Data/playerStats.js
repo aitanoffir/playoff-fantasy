@@ -1,6 +1,6 @@
 export default {
   "Wildcard": {
-    "Ladd McConkey": 34.7,
+    "Ladd McConkey": 30.7,
     "Derrick Henry": 30.6,
     "Josh Allen": 25.5,
     "Nico Collins": 25.2,
