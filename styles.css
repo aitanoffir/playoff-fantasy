@@ -638,6 +638,18 @@ main {
     color: #721c24;
 }
 
+/* Drafted players list */
+.drafted-players {
+    padding: 1rem 1.5rem;
+    background: #f0f9ff;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.drafted-players h3 {
+    margin: 0 0 0.5rem 0;
+    color: #005778;
+}
+
 /* Team status */
 .position-status {
     display: flex;

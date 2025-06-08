@@ -187,6 +187,13 @@ function createDraftInterfaceHTML() {
                         <!-- Will be populated by updatePositionCounts -->
                     </div>
                 </div>
+
+                <div class="drafted-players">
+                    <h3>Drafted Players:</h3>
+                    <div class="drafted-list roster-players" id="drafted-list">
+                        <!-- Will be populated by updateDraftedPlayersList -->
+                    </div>
+                </div>
                 
                 <div class="player-grid" id="player-grid">
                     <!-- Players will be populated here -->
@@ -249,6 +256,7 @@ function updateDraftInterface() {
     updatePositionCounts();
     updatePlayerGrid();
     updateRecentPicks();
+    updateDraftedPlayersList();
     
     // Check if draft is complete
     if (isDraftComplete()) {
@@ -329,6 +337,27 @@ function updateRecentPicks() {
             <span class="pick-player">${pick.player}</span>
             <span class="pick-position">${pick.position}</span>
             <span class="pick-team">${pick.team}</span>
+        </div>
+    `).join('');
+}
+
+// Show drafted players for current drafter
+function updateDraftedPlayersList() {
+    const container = document.getElementById('drafted-list');
+    if (!container) return;
+
+    const roster = draftState.completedRosters[draftState.currentDrafter] || [];
+
+    if (roster.length === 0) {
+        container.innerHTML = '<div class="no-picks">No players drafted yet</div>';
+        return;
+    }
+
+    container.innerHTML = roster.map(player => `
+        <div class="roster-player">
+            <span class="player-name">${player.name}</span>
+            <span class="player-pos">${player.position}</span>
+            <span class="player-team">${player.team}</span>
         </div>
     `).join('');
 }

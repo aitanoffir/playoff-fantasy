@@ -132,6 +132,7 @@ let draftState = {
     isPaused: false,
     currentPick: 1,
     currentDrafter: draftOrder[0],
+    draftDirection: 1, // 1 = forward, -1 = reverse (for snake)
     draftedPlayers: {}, // playerName: { owner, pickNumber, position }
     draftHistory: [], // array of picks in order
     completedRosters: {} // owner: array of players
@@ -147,6 +148,7 @@ function initializeDraft() {
         isPaused: false,
         currentPick: 1,
         currentDrafter: draftOrder[0],
+        draftDirection: 1,
         draftedPlayers: {},
         draftHistory: [],
         completedRosters: {}
@@ -175,6 +177,7 @@ function resetDraft() {
         isPaused: false,
         currentPick: 1,
         currentDrafter: draftOrder[0],
+        draftDirection: 1,
         draftedPlayers: {},
         draftHistory: [],
         completedRosters: {}
@@ -189,7 +192,12 @@ function loadDraftState() {
     const saved = localStorage.getItem('draftState');
     if (saved) {
         draftState = JSON.parse(saved);
-        
+
+        // Default direction if loading older state
+        if (!draftState.draftDirection) {
+            draftState.draftDirection = 1;
+        }
+
         // Update global rosters object with drafted players
         if (draftState.completedRosters) {
             Object.assign(rosters, draftState.completedRosters);
@@ -305,11 +313,20 @@ function draftPlayer(playerName, position) {
     
     // Advance to next pick
     draftState.currentPick++;
-    
+
     if (!isDraftComplete()) {
-        const currentDrafterIndex = draftOrder.indexOf(draftState.currentDrafter);
-        const nextDrafterIndex = (currentDrafterIndex + 1) % draftOrder.length;
-        draftState.currentDrafter = draftOrder[nextDrafterIndex];
+        const currentIndex = draftOrder.indexOf(draftState.currentDrafter);
+        let nextIndex = currentIndex + draftState.draftDirection;
+
+        if (nextIndex >= draftOrder.length) {
+            draftState.draftDirection = -1;
+            nextIndex = draftOrder.length - 1;
+        } else if (nextIndex < 0) {
+            draftState.draftDirection = 1;
+            nextIndex = 0;
+        }
+
+        draftState.currentDrafter = draftOrder[nextIndex];
     }
     
     saveDraftState();
