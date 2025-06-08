@@ -153,10 +153,14 @@ function initializeDraft() {
         draftHistory: [],
         completedRosters: {}
     };
-    
+
     // Initialize empty rosters
     draftOrder.forEach(owner => {
         draftState.completedRosters[owner] = [];
+        // Clear global rosters so the drafted list starts empty
+        if (typeof rosters !== 'undefined') {
+            rosters[owner] = [];
+        }
     });
     
     saveDraftState();
