@@ -131,7 +131,7 @@ let draftState = {
     isActive: false,
     isPaused: false,
     currentPick: 1,
-    currentDrafter: draftOrder[0],
+    currentDrafter: null, // Will be set by snake draft logic
     draftedPlayers: {}, // playerName: { owner, pickNumber, position }
     draftHistory: [], // array of picks in order
     completedRosters: {} // owner: array of players
@@ -141,12 +141,25 @@ let draftState = {
 const totalPicks = draftOrder.length * Object.values(rosterRules).reduce((sum, count) => sum + count, 0);
 
 // Helper functions for draft management
+function getSnakeDraftOrder(pickNumber) {
+    const numOwners = draftOrder.length;
+    const round = Math.ceil(pickNumber / numOwners);
+    const positionInRound = ((pickNumber - 1) % numOwners) + 1;
+    
+    // Even rounds reverse the order
+    if (round % 2 === 0) {
+        return draftOrder[numOwners - positionInRound];
+    } else {
+        return draftOrder[positionInRound - 1];
+    }
+}
+
 function initializeDraft() {
     draftState = {
         isActive: true,
         isPaused: false,
         currentPick: 1,
-        currentDrafter: draftOrder[0],
+        currentDrafter: getSnakeDraftOrder(1),
         draftedPlayers: {},
         draftHistory: [],
         completedRosters: {}
@@ -174,7 +187,7 @@ function resetDraft() {
         isActive: false,
         isPaused: false,
         currentPick: 1,
-        currentDrafter: draftOrder[0],
+        currentDrafter: getSnakeDraftOrder(1),
         draftedPlayers: {},
         draftHistory: [],
         completedRosters: {}
@@ -189,6 +202,11 @@ function loadDraftState() {
     const saved = localStorage.getItem('draftState');
     if (saved) {
         draftState = JSON.parse(saved);
+        
+        // Ensure current drafter is set correctly using snake draft logic
+        if (draftState.currentPick <= totalPicks) {
+            draftState.currentDrafter = getSnakeDraftOrder(draftState.currentPick);
+        }
         
         // Update global rosters object with drafted players
         if (draftState.completedRosters) {
@@ -307,14 +325,35 @@ function draftPlayer(playerName, position) {
     draftState.currentPick++;
     
     if (!isDraftComplete()) {
-        const currentDrafterIndex = draftOrder.indexOf(draftState.currentDrafter);
-        const nextDrafterIndex = (currentDrafterIndex + 1) % draftOrder.length;
-        draftState.currentDrafter = draftOrder[nextDrafterIndex];
+        draftState.currentDrafter = getSnakeDraftOrder(draftState.currentPick);
     }
     
     saveDraftState();
     
     return draftState;
+}
+
+// Calculate total points for an owner (simplified version for draft completion)
+function calculateOwnerTotal(owner) {
+    // If playerStats is not available (typical during draft), return 0
+    if (typeof playerStats === 'undefined' || !playerStats) {
+        return 0;
+    }
+    
+    const ownerRoster = rosters[owner] || [];
+    return ownerRoster.reduce((total, player) => {
+        const playerName = player.name;
+        let playerTotal = 0;
+        
+        // Sum points from all weeks for this player
+        // If player doesn't have a score for a week, they get 0 points
+        Object.keys(playerStats).forEach(week => {
+            const weeklyPoints = playerStats[week][playerName] || 0;
+            playerTotal += weeklyPoints;
+        });
+        
+        return total + playerTotal;
+    }, 0);
 }
 
 // Validation functions for existing rosters
@@ -347,5 +386,22 @@ function validateAllRosters() {
     return results;
 }
 
+function getCompleteSnakeDraftOrder() {
+    const fullOrder = [];
+    for (let pick = 1; pick <= totalPicks; pick++) {
+        fullOrder.push({
+            pick: pick,
+            drafter: getSnakeDraftOrder(pick),
+            round: Math.ceil(pick / draftOrder.length)
+        });
+    }
+    return fullOrder;
+}
+
 // Load draft state on initialization
 loadDraftState();
+
+// Ensure current drafter is set correctly if no saved state
+if (!draftState.currentDrafter && draftState.currentPick <= totalPicks) {
+    draftState.currentDrafter = getSnakeDraftOrder(draftState.currentPick);
+}

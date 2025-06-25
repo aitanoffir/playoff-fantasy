@@ -246,6 +246,12 @@ function updateDraftInterface() {
         btn.textContent = `${position} (${count})`;
     });
     
+    // Update roster status header
+    const rosterStatusHeader = document.querySelector('.roster-status h3');
+    if (rosterStatusHeader) {
+        rosterStatusHeader.textContent = `${draftState.currentDrafter}'s Roster Status:`;
+    }
+    
     updatePositionCounts();
     updatePlayerGrid();
     updateRecentPicks();
@@ -347,7 +353,11 @@ function selectPlayer(playerName, position) {
     
     if (confirm(`Draft ${playerName} for ${draftState.currentDrafter}?`)) {
         try {
-            draftPlayer(playerName, position);
+            const updatedState = draftPlayer(playerName, position);
+            
+            // Ensure draftState is synchronized
+            draftState = updatedState;
+            
             updateDraftInterface();
             
             // Update leaderboard if function exists
