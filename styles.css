@@ -761,66 +761,111 @@ main {
     background: rgba(230, 126, 34, 0.9);
 }
 
-/* Draft history */
-.draft-history {
+/* Current roster display */
+.current-roster {
     padding: 1rem 1.5rem;
     background: #f8f9fa;
     border-top: 1px solid #dee2e6;
 }
 
-.draft-history h3 {
+.current-roster h3 {
     margin: 0 0 1rem 0;
     color: #005778;
 }
 
-.recent-picks {
+.current-roster-players {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1rem;
 }
 
-.recent-pick {
-    display: grid;
-    grid-template-columns: 60px 1fr 2fr 60px 60px;
-    gap: 1rem;
-    padding: 0.75rem;
+.position-group {
     background: white;
     border-radius: 8px;
     border: 1px solid #dee2e6;
+    overflow: hidden;
+}
+
+.position-header {
+    background: linear-gradient(135deg, #005778, #008E97);
+    color: white;
+    padding: 0.75rem 1rem;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
-.pick-number {
+.position-name {
     font-weight: 600;
-    color: #005778;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
 }
 
-.pick-owner {
+.position-status {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.position-players {
+    padding: 0.5rem;
+}
+
+.roster-player {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    background: #e8f5e8;
+    border-radius: 6px;
+    border-left: 4px solid #27ae60;
+}
+
+.roster-player:last-child {
+    margin-bottom: 0;
+}
+
+.roster-player .player-name {
     font-weight: 600;
     color: #2c3e50;
+    flex-grow: 1;
 }
 
-.pick-player {
-    color: #2c3e50;
-}
-
-.pick-position {
-    background: #3498db;
-    color: white;
+.roster-player .player-team {
+    font-size: 0.9rem;
+    color: #6c757d;
+    background: #f8f9fa;
     padding: 0.25rem 0.5rem;
     border-radius: 4px;
-    font-size: 0.8rem;
-    text-align: center;
-    font-weight: 600;
+    font-weight: 500;
 }
 
-.pick-team {
+.empty-slot {
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    background: #f8f9fa;
+    border-radius: 6px;
+    border-left: 4px solid #dee2e6;
     color: #6c757d;
-    font-size: 0.9rem;
+    font-style: italic;
     text-align: center;
 }
 
-.no-players, .no-picks {
+.empty-slot:last-child {
+    margin-bottom: 0;
+}
+
+.no-picks {
+    text-align: center;
+    padding: 2rem;
+    color: #6c757d;
+    font-style: italic;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+}
+
+.no-players {
     text-align: center;
     color: #6c757d;
     font-style: italic;
@@ -965,10 +1010,18 @@ main {
         padding: 1rem;
     }
     
-    .recent-pick {
-        grid-template-columns: 1fr;
+    .roster-player {
+        flex-direction: column;
         gap: 0.5rem;
         text-align: center;
+    }
+    
+    .roster-player .player-name {
+        margin-bottom: 0.25rem;
+    }
+    
+    .position-header {
+        padding: 0.5rem 1rem;
     }
     
     .final-rosters {

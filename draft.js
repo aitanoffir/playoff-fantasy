@@ -192,10 +192,10 @@ function createDraftInterfaceHTML() {
                     <!-- Players will be populated here -->
                 </div>
                 
-                <div class="draft-history">
-                    <h3>Recent Picks:</h3>
-                    <div class="recent-picks" id="recent-picks">
-                        <!-- Recent picks will be shown here -->
+                <div class="current-roster">
+                    <h3>Your Current Roster:</h3>
+                    <div class="current-roster-players" id="current-roster-players">
+                        <!-- Current drafter's roster will be shown here -->
                     </div>
                 </div>
             </div>
@@ -254,7 +254,7 @@ function updateDraftInterface() {
     
     updatePositionCounts();
     updatePlayerGrid();
-    updateRecentPicks();
+    updateCurrentRoster();
     
     // Check if draft is complete
     if (isDraftComplete()) {
@@ -316,27 +316,49 @@ function updatePlayerGrid() {
     }).join('');
 }
 
-// Update recent picks display
-function updateRecentPicks() {
-    const container = document.getElementById('recent-picks');
+// Update current drafter's roster display
+function updateCurrentRoster() {
+    const container = document.getElementById('current-roster-players');
     if (!container) return;
     
-    const recentPicks = draftState.draftHistory.slice(-5).reverse();
+    const currentRoster = draftState.completedRosters[draftState.currentDrafter] || [];
     
-    if (recentPicks.length === 0) {
-        container.innerHTML = '<div class="no-picks">No picks yet</div>';
+    if (currentRoster.length === 0) {
+        container.innerHTML = '<div class="no-picks">No players drafted yet</div>';
         return;
     }
     
-    container.innerHTML = recentPicks.map(pick => `
-        <div class="recent-pick">
-            <span class="pick-number">#${pick.pick}</span>
-            <span class="pick-owner">${pick.owner}</span>
-            <span class="pick-player">${pick.player}</span>
-            <span class="pick-position">${pick.position}</span>
-            <span class="pick-team">${pick.team}</span>
-        </div>
-    `).join('');
+    // Group players by position for better organization
+    const rosterByPosition = {};
+    Object.keys(rosterRules).forEach(pos => {
+        rosterByPosition[pos] = currentRoster.filter(player => player.position === pos);
+    });
+    
+    container.innerHTML = Object.keys(rosterByPosition).map(position => {
+        const players = rosterByPosition[position];
+        const maxCount = rosterRules[position];
+        const currentCount = players.length;
+        
+        return `
+            <div class="position-group">
+                <div class="position-header">
+                    <span class="position-name">${position}</span>
+                    <span class="position-status">(${currentCount}/${maxCount})</span>
+                </div>
+                <div class="position-players">
+                    ${players.map(player => `
+                        <div class="roster-player">
+                            <span class="player-name">${player.name}</span>
+                            <span class="player-team">${player.team}</span>
+                        </div>
+                    `).join('')}
+                    ${Array(maxCount - currentCount).fill(0).map(() => 
+                        `<div class="empty-slot">Empty</div>`
+                    ).join('')}
+                </div>
+            </div>
+        `;
+    }).join('');
 }
 
 // Select a player in the draft
