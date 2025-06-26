@@ -1,251 +1,152 @@
-# 🏈 Fantasy NFL Playoff Tracker
+# Fantasy NFL Playoff Tracker 🏈
 
-> **Play fantasy even after the season is over!**
+A web-based fantasy football application for NFL playoffs featuring snake drafting, real-time scoring, and interactive leaderboards.
 
-A comprehensive fantasy football application specifically designed for NFL playoff tracking, featuring live drafting, real-time scoring, and advanced team management capabilities.
+## What This Project Does
 
-![Fantasy NFL Playoff Tracker](https://img.shields.io/badge/Fantasy-NFL%20Playoffs-brightgreen)
-![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow)
-![HTML5](https://img.shields.io/badge/HTML5-Semantic-orange)
-![CSS3](https://img.shields.io/badge/CSS3-Modern-blue)
+Run fantasy football leagues during NFL playoffs with complete draft-to-finish functionality:
 
----
+- **Snake Draft System**: Interactive 6-person draft with reversing order each round
+- **Live Leaderboard**: Real-time standings with total points and active player counts
+- **Smart Roster Display**: Shows current drafter's roster grouped by position
+- **Weekly Breakdown**: Detailed scoring for each playoff round (Wildcard, Divisional, Conference, Super Bowl)
+- **Data Management**: Automatic refresh and update capabilities
+- **Mobile Responsive**: Works seamlessly on all devices
 
-## 🌟 Features
+## Quick Start
 
-### 🎯 **Live Draft System**
-- **Complete Draft Interface**: Modal-based drafting with position tabs (QB, RB, WR, TE)
-- **Player Pool**: All relevant offensive skill players across all playoff teams
-- **Sequential Drafting**: 6-owner draft order with automatic turn advancement
-- **Team Diversity Rule**: Maximum 1 player per NFL team per roster
-- **Draft Controls**: Start, Pause, Resume, Reset functionality
-- **Progress Tracking**: Real-time draft status and pick history
-- **State Persistence**: Draft progress saved in localStorage
+### For Personal Use
+1. Download/clone this repository
+2. Open `index.html` in your web browser
+3. Click "Start Draft" to begin
 
-### 📊 **Scoring & Leaderboards**
-- **Dynamic Leaderboard**: Real-time ranking based on total points
-- **Weekly Breakdown**: Expandable weekly scoring details
-- **Active/Eliminated Status**: Track players still in the playoffs
-- **Visual Indicators**: Color-coded rankings and elimination status
+### For Group Play
+Deploy online (see [Deployment Guide](#deployment)) and share the URL with your league.
 
-### 🛠 **Data Management**
-- **Export Functionality**: Download rosters and player stats as JavaScript files
-- **Backup & Restore**: Complete data export for version control
-- **Roster Validation**: Automated position and team limit checking
-- **Score Preservation**: Maintains existing weekly points during exports
+## How It Works
 
-### 🎨 **Modern UI/UX**
-- **Responsive Design**: Mobile-friendly interface
-- **Smooth Animations**: CSS transitions and hover effects
-- **Visual Feedback**: Clear status indicators and progress bars
-- **Intuitive Controls**: Easy-to-use buttons and navigation
+### Draft Process
+- **6 rounds, 6 people**: Each person drafts 1 QB, 2 RB, 2 WR, 1 TE
+- **Snake order**: Round 1 goes First→Last, Round 2 goes Last→First, etc.
+- **Position-based interface**: Players organized by QB/RB/WR/TE tabs
+- **Live roster view**: See your current picks while drafting
 
----
+### Scoring System
+- **Real playoff stats**: Points based on actual NFL playoff performance
+- **Weekly updates**: Scores populate after each playoff round
+- **Team elimination**: Players from eliminated teams stop scoring
+- **Live refresh**: Click refresh button to get latest data
 
-## 🚀 Getting Started
+### Data Files
+- `Data/draftData.js` - Available players and draft settings
+- `Data/rosters.js` - Draft results (who picked whom)
+- `Data/playerStats.js` - Weekly scoring data
+- `Data/activeTeams.js` - Teams still in playoffs
 
-### Prerequisites
-- Modern web browser (Chrome, Firefox, Safari, Edge)
-- No server required - runs locally in browser
+## Customization
 
-### Installation
-1. **Clone or download** this repository
-2. **Open `index.html`** in your web browser
-3. **Start drafting** or view existing leaderboards
-
-```bash
-# Optional: Serve with a local server for better development
-python -m http.server 8000
-# or
-npx serve .
-```
-
----
-
-## 📁 Project Structure
-
-```
-playoff-fantasy/
-├── index.html              # Main application entry point
-├── app.js                  # Core leaderboard and scoring logic
-├── draft.js                # Complete draft system functionality
-├── styles.css              # All styling and animations
-├── Data/
-│   ├── activeTeams.js      # Currently active playoff teams
-│   ├── draftData.js        # Player pool and draft configuration
-│   ├── rosters.js          # Team rosters (can be drafted or pre-set)
-│   └── playerStats.js      # Player statistics and weekly scores
-├── README.md               # Project documentation
-├── EXPORT_GUIDE.md         # Data export instructions
-└── .gitignore              # Git ignore file
-```
-
----
-
-## 🎮 How to Use
-
-### Starting a New Draft
-
-1. **Click "Start Draft"** in the header
-2. **Select position tab** (QB, RB, WR, TE) in the draft modal
-3. **Choose a player** from the available pool
-4. **Draft automatically advances** to the next owner
-5. **Continue until all rosters are complete** (1 QB, 2 RB, 2 WR, 1 TE per team)
-
-### Draft Rules & Restrictions
-
-- **Position Limits**: Each roster must have exactly 1 QB, 2 RB, 2 WR, 1 TE
-- **Team Diversity**: Maximum 1 player per NFL team per roster
-- **Sequential Order**: Draft follows predetermined owner order
-- **No Duplicates**: Each player can only be drafted once
-
-### Viewing Results
-
-- **Leaderboard**: See real-time rankings and total points
-- **Weekly Breakdown**: Expand sections to view detailed scoring
-- **Player Status**: Active players highlighted, eliminated players grayed out
-- **Owner Details**: Click "View Details" for complete roster information
-
-### Exporting Data
-
-1. **Complete your draft** or use existing rosters
-2. **Click "Export Rosters"** to download team compositions
-3. **Click "Export Stats"** to download player statistics
-4. **Follow [EXPORT_GUIDE.md](EXPORT_GUIDE.md)** for file replacement instructions
-
----
-
-## 🏗️ Technical Implementation
-
-### Core Technologies
-- **Pure JavaScript (ES6+)**: No frameworks, modern syntax
-- **HTML5 Semantic Elements**: Proper document structure
-- **CSS3 Grid & Flexbox**: Responsive layout system
-- **LocalStorage API**: Client-side state persistence
-
-### Key Components
-
-#### Draft System (`draft.js`)
-- Modal interface with position-based tabs
-- Player card rendering with team restrictions
-- Draft state management and validation
-- Export functionality for data persistence
-
-#### Scoring Engine (`app.js`)
-- Dynamic leaderboard calculation
-- Weekly breakdown rendering
-- Active/eliminated player tracking
-- Sortable columns and expandable sections
-
-#### Data Structure (`Data/`)
-- **`activeTeams.js`**: Currently active playoff teams - **USED FOR** elimination status
-- **`draftData.js`**: Player pool with positions and teams for draft interface
-- **`rosters.js`**: Owner roster assignments - **PRIMARY SOURCE** for all player rendering
-- **`playerStats.js`**: Weekly scoring data - **USED ONLY** for calculating points
-
-#### Styling (`styles.css`)
-- CSS custom properties for theming
-- Responsive grid layouts
-- Smooth animations and transitions
-- Visual feedback for user interactions
-
----
-
-## 🎨 UI Features
-
-### Draft Interface
-- **Position Tabs**: Clear navigation between QB, RB, WR, TE
-- **Player Cards**: Photo placeholders, names, teams, positions
-- **Restriction Indicators**: Visual feedback for draft limitations
-- **Progress Tracking**: Current pick, remaining spots, draft history
-
-### Leaderboard Display
-- **Dynamic Rankings**: Real-time position updates
-- **Color Coding**: Top 3 positions highlighted
-- **Status Indicators**: Active/eliminated player counts
-- **Expandable Details**: Weekly scoring breakdowns
-
-### Responsive Design
-- **Mobile Optimized**: Touch-friendly interfaces
-- **Desktop Enhanced**: Hover effects and larger layouts
-- **Cross-Browser**: Compatible with modern browsers
-
----
-
-## 🔧 Customization
-
-### Adding Players
-Edit `Data/draftData.js` to add new players to the pool:
-
+### Change Draft Participants
+Edit `Data/draftData.js`:
 ```javascript
-"QB": [
-    { name: "New Quarterback", team: "NFL_TEAM" },
-    // ... existing players
-]
+const draftOrder = ["Your Name", "Friend 1", "Friend 2", "Friend 3", "Friend 4", "Friend 5"];
+```
+### Update Active Teams After Each Playoff Round (Automation of this coming soon...)
+Edit `Data/activeTeams.js` to remove eliminated teams:
+```javascript
+const activeTeams = [
+    "KC",  // Kansas City Chiefs
+    "PHI", // Philadelphia Eagles
+    "BAL", // Baltimore Ravens
+    "BUF"  // Buffalo Bills
+    // Remove teams that get eliminated each week
+];
 ```
 
-### Modifying Draft Order
-Update the `draftOrder` array in `Data/draftData.js`:
-
+### Update Scores (After Each Playoff Round)
+Run the Python scraper or manually edit `Data/playerStats.js`:
 ```javascript
-const draftOrder = ["Owner1", "Owner2", "Owner3", "Owner4", "Owner5", "Owner6"];
-```
-
-### Changing Roster Rules
-Modify `rosterRules` in `Data/draftData.js`:
-
-```javascript
-const rosterRules = {
-    QB: 1,   // Quarterbacks
-    RB: 2,   // Running Backs  
-    WR: 2,   // Wide Receivers
-    TE: 1    // Tight Ends
+export default {
+  "Wildcard": {
+    "Player Name": 25.4,
+    // ... other players
+  },
+  "Divisional": {
+    // ... next round scores
+  }
 };
 ```
 
-### Updating Weekly Scores
-Edit `Data/playerStats.js` after each playoff round:
+### Auto-Update Player Stats
+The project includes a Python scraper for automatic data updates:
 
-```javascript
-"Player Name": {
-    team: "NFL_TEAM",
-    weeklyPoints: {
-        "Wildcard": 25.4,
-        "Divisional": 18.7,
-        "Conference": 0,
-        "Super Bowl": 0
-    }
-}
+1. Install dependencies: `pip install -r requirements.txt`
+2. Run scraper: `python scripts/scraper.py`
+3. Updated stats saved to `Data/playerStats.js`
+4. Use refresh button in app to load new data
+
+### Export Rosters
+After completing your draft, you can export the roster data:
+
+1. Complete the draft or ensure all rosters are set
+2. Click "Export Rosters" button (appears after draft completion)
+3. Download the generated `rosters.js` file
+4. Replace the existing `Data/rosters.js` file with your download
+5. Refresh the app to see updated rosters
+
+This is useful for:
+- Backing up your draft results
+- Sharing rosters with other instances of the app
+- Making manual roster adjustments
+
+## Deployment
+
+### GitHub Pages (Recommended)
+1. Fork/upload this repository to GitHub
+2. Go to repository Settings → Pages
+3. Select "main" branch as source
+4. Share URL: `https://yourusername.github.io/playoff-fantasy`
+
+### Netlify (Drag & Drop)
+1. Visit [netlify.com](https://netlify.com)
+2. Drag project folder onto Netlify
+3. Get instant URL to share
+
+### Vercel
+1. Import GitHub repository to [vercel.com](https://vercel.com)
+2. Auto-deploys on every commit
+3. Get production URL
+
+### Custom Server
+Upload all files to any web server - no special requirements needed.
+
+## Project Structure
+
+```
+playoff-fantasy/
+├── index.html          # Main application page
+├── app.js             # Core leaderboard and scoring logic
+├── draft.js           # Snake draft system
+├── styles.css         # Complete styling
+├── Data/
+│   ├── draftData.js      # Player pool and draft configuration
+│   ├── rosters.js        # Draft results and team rosters
+│   ├── playerStats.js    # Weekly playoff scoring data
+│   └── activeTeams.js    # Teams still in playoffs
+└── scripts/
+    └── scraper.py        # Automated data scraping utility
 ```
 
----
+## Technical Details
 
-## 📊 Data Export System
+- **Pure JavaScript**: No frameworks, runs in any modern browser
+- **Persistent State**: Draft progress saved in browser localStorage
+- **Responsive Design**: CSS Grid and Flexbox for all screen sizes
+- **Data Updates**: Dynamic import with cache-busting for fresh data
 
-The application includes a comprehensive export system for data persistence:
+## Browser Support
 
-### Export Features
-- **Roster Export**: Download complete team compositions
-- **Stats Export**: Download player statistics with scoring data
-- **Data Validation**: Ensures exported data maintains proper structure
-- **Backup Creation**: Generate backups before major changes
-
-### Export Process
-1. Complete draft or modify existing rosters
-2. Use export buttons in interface
-3. Replace original data files with downloads
-4. Refresh application to see changes
-
-*See [EXPORT_GUIDE.md](EXPORT_GUIDE.md) for detailed instructions.*
+Works in all modern browsers (Chrome, Firefox, Safari, Edge). JavaScript must be enabled.
 
 ---
 
-## 🙏 Acknowledgments
-
-- **NFL Teams & Players**: Data sourced from public NFL information
-- **Fantasy Sports Community**: Inspiration for scoring and drafting systems
-- **Modern Web Standards**: Built with current best practices
-
----
-
-**Built with ❤️ for fantasy football enthusiasts who can't get enough of the game!**
+**Ready to make your NFL playoffs more exciting? Start drafting! 🏆**
