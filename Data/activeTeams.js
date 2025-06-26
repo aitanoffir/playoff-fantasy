@@ -13,8 +13,6 @@ const activeTeams = [
     "DEN",
     "HOU",
     "LAC",
-    "SF",
     "BUF",
-    "MIN",
-    "LV"
+    "MIN"
 ];
