@@ -106,6 +106,15 @@ This is useful for:
 3. Select "main" branch as source
 4. Share URL: `https://yourusername.github.io/playoff-fantasy`
 
+**Bonus: Automated Data Updates**
+If you fork this repository, it includes GitHub Actions that automatically:
+- Run the Python scraper weekly during playoff season
+- Update player stats and active teams
+- Commit changes back to your repository
+- Deploy updated data to your GitHub Pages site
+
+No manual intervention needed - your fantasy app stays current automatically!
+
 ### Netlify (Drag & Drop)
 1. Visit [netlify.com](https://netlify.com)
 2. Drag project folder onto Netlify
