@@ -458,16 +458,6 @@ main {
     border-color: #1e7e34;
 }
 
-.draft-btn.export-stats {
-    background-color: #17a2b8;
-    border-color: #17a2b8;
-}
-
-.draft-btn.export-stats:hover {
-    background-color: #138496;
-    border-color: #117a8b;
-}
-
 /* Draft interface modal */
 .draft-interface {
     position: fixed;
@@ -636,32 +626,6 @@ main {
 .position-count.maxed {
     background: #f8d7da;
     color: #721c24;
-}
-
-/* Team status */
-.position-status {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin-bottom: 1rem;
-}
-
-.team-status {
-    padding: 0.75rem;
-    background: #e9ecef;
-    border-radius: 8px;
-    font-size: 0.9rem;
-}
-
-.team-used {
-    display: inline-block;
-    background: #6c757d;
-    color: white;
-    padding: 0.25rem 0.5rem;
-    border-radius: 12px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    margin: 0 0.25rem;
 }
 
 /* Player grid */
@@ -1061,63 +1025,6 @@ main {
         left: 10px;
         top: 10px;
     }
-}
-
-/* Team violation warning */
-.team-violation-warning {
-    background: linear-gradient(135deg, #f39c12, #e67e22);
-    color: white;
-    padding: 1.5rem;
-    margin: 1rem 0;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.team-violation-warning .warning-content h3 {
-    margin: 0 0 1rem 0;
-    font-size: 1.2rem;
-}
-
-.team-violation-warning .warning-content p {
-    margin: 0 0 1rem 0;
-    line-height: 1.5;
-}
-
-.team-violation-warning details {
-    margin: 1rem 0;
-}
-
-.team-violation-warning summary {
-    cursor: pointer;
-    font-weight: 600;
-    padding: 0.5rem;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
-    margin-bottom: 0.5rem;
-}
-
-.team-violation-warning pre {
-    background: rgba(0, 0, 0, 0.3);
-    padding: 1rem;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    white-space: pre-wrap;
-    overflow-x: auto;
-}
-
-.team-violation-warning button {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.team-violation-warning button:hover {
-    background: rgba(255, 255, 255, 0.3);
 }
 
 /* Notification styles */
