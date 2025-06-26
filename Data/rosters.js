@@ -1,8 +1,40 @@
-// Generated rosters from draft on 5/29/2025, 8:06:50 PM
+// Generated rosters from draft on 6/25/2025, 8:23:31 PM
 const rosters = {
     "Aitan": [
         {
             "name": "Patrick Mahomes",
+            "team": "KC",
+            "position": "QB"
+        },
+        {
+            "name": "Kenneth Gainwell",
+            "team": "PHI",
+            "position": "RB"
+        },
+        {
+            "name": "Derrick Henry",
+            "team": "BAL",
+            "position": "RB"
+        },
+        {
+            "name": "Van Jefferson",
+            "team": "PIT",
+            "position": "WR"
+        },
+        {
+            "name": "Mike Evans",
+            "team": "TB",
+            "position": "WR"
+        },
+        {
+            "name": "Sam LaPorta",
+            "team": "DET",
+            "position": "TE"
+        }
+    ],
+    "Xavi": [
+        {
+            "name": "Carson Wentz",
             "team": "KC",
             "position": "QB"
         },
@@ -12,55 +44,23 @@ const rosters = {
             "position": "RB"
         },
         {
-            "name": "Najee Harris",
+            "name": "Justice Hill",
+            "team": "BAL",
+            "position": "RB"
+        },
+        {
+            "name": "George Pickens",
             "team": "PIT",
-            "position": "RB"
-        },
-        {
-            "name": "Cooper Kupp",
-            "team": "LAR",
             "position": "WR"
         },
         {
-            "name": "Amon-Ra St. Brown",
-            "team": "DET",
-            "position": "WR"
-        },
-        {
-            "name": "Mark Andrews",
-            "team": "BAL",
-            "position": "TE"
-        }
-    ],
-    "Xavi": [
-        {
-            "name": "Lamar Jackson",
-            "team": "BAL",
-            "position": "QB"
-        },
-        {
-            "name": "Josh Jacobs",
-            "team": "GB",
-            "position": "RB"
-        },
-        {
-            "name": "Rachaad White",
+            "name": "Chris Godwin",
             "team": "TB",
-            "position": "RB"
-        },
-        {
-            "name": "A.J. Brown",
-            "team": "PHI",
             "position": "WR"
         },
         {
-            "name": "Terry McLaurin",
+            "name": "Zach Ertz",
             "team": "WAS",
-            "position": "WR"
-        },
-        {
-            "name": "Travis Kelce",
-            "team": "KC",
             "position": "TE"
         }
     ],
@@ -71,124 +71,124 @@ const rosters = {
             "position": "QB"
         },
         {
-            "name": "Derrick Henry",
-            "team": "BAL",
-            "position": "RB"
-        },
-        {
-            "name": "Javonte Williams",
-            "team": "DEN",
-            "position": "RB"
-        },
-        {
-            "name": "Stefon Diggs",
-            "team": "HOU",
-            "position": "WR"
-        },
-        {
-            "name": "Ladd McConkey",
-            "team": "LAC",
-            "position": "WR"
-        },
-        {
-            "name": "Sam LaPorta",
-            "team": "DET",
-            "position": "TE"
-        }
-    ],
-    "Eric": [
-        {
-            "name": "Josh Allen",
-            "team": "BUF",
-            "position": "QB"
-        },
-        {
-            "name": "David Montgomery",
-            "team": "DET",
-            "position": "RB"
-        },
-        {
             "name": "Jaylen Warren",
             "team": "PIT",
             "position": "RB"
         },
         {
-            "name": "Mike Evans",
+            "name": "Rachaad White",
             "team": "TB",
+            "position": "RB"
+        },
+        {
+            "name": "Xavier Worthy",
+            "team": "KC",
             "position": "WR"
         },
         {
-            "name": "Jordan Addison",
-            "team": "MIN",
+            "name": "Zay Flowers",
+            "team": "BAL",
             "position": "WR"
         },
         {
-            "name": "George Kittle",
-            "team": "SF",
+            "name": "Hunter Long",
+            "team": "LAR",
+            "position": "TE"
+        }
+    ],
+    "Eric": [
+        {
+            "name": "Kenny Pickett",
+            "team": "PHI",
+            "position": "QB"
+        },
+        {
+            "name": "Najee Harris",
+            "team": "PIT",
+            "position": "RB"
+        },
+        {
+            "name": "Chase Edmonds",
+            "team": "TB",
+            "position": "RB"
+        },
+        {
+            "name": "Rashee Rice",
+            "team": "KC",
+            "position": "WR"
+        },
+        {
+            "name": "Rashod Bateman",
+            "team": "BAL",
+            "position": "WR"
+        },
+        {
+            "name": "Tyler Higbee",
+            "team": "LAR",
             "position": "TE"
         }
     ],
     "Michael": [
         {
-            "name": "Justin Herbert",
-            "team": "LAC",
+            "name": "Russell Wilson",
+            "team": "PIT",
             "position": "QB"
         },
         {
-            "name": "James Cook",
-            "team": "BUF",
+            "name": "Clyde Edwards-Helaire",
+            "team": "KC",
             "position": "RB"
         },
         {
-            "name": "Brian Robinson Jr.",
-            "team": "WAS",
-            "position": "RB"
-        },
-        {
-            "name": "Justin Jefferson",
-            "team": "MIN",
-            "position": "WR"
-        },
-        {
-            "name": "Puka Nacua",
+            "name": "Kyren Williams",
             "team": "LAR",
+            "position": "RB"
+        },
+        {
+            "name": "DeVonta Smith",
+            "team": "PHI",
             "position": "WR"
         },
         {
-            "name": "Brock Bowers",
-            "team": "LV",
+            "name": "Terry McLaurin",
+            "team": "WAS",
+            "position": "WR"
+        },
+        {
+            "name": "Isaiah Likely",
+            "team": "BAL",
             "position": "TE"
         }
     ],
     "Leo": [
         {
-            "name": "Jared Goff",
-            "team": "DET",
+            "name": "Justin Fields",
+            "team": "PIT",
             "position": "QB"
         },
         {
-            "name": "Aaron Jones",
-            "team": "MIN",
+            "name": "Isiah Pacheco",
+            "team": "KC",
             "position": "RB"
         },
         {
-            "name": "J.K. Dobbins",
-            "team": "LAC",
+            "name": "Zach Evans",
+            "team": "LAR",
             "position": "RB"
         },
         {
-            "name": "Courtland Sutton",
-            "team": "DEN",
-            "position": "WR"
-        },
-        {
-            "name": "Romeo Doubs",
-            "team": "GB",
-            "position": "WR"
-        },
-        {
-            "name": "Dallas Goedert",
+            "name": "A.J. Brown",
             "team": "PHI",
+            "position": "WR"
+        },
+        {
+            "name": "Jahan Dotson",
+            "team": "WAS",
+            "position": "WR"
+        },
+        {
+            "name": "Mark Andrews",
+            "team": "BAL",
             "position": "TE"
         }
     ]
